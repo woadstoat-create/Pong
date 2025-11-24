@@ -5,10 +5,12 @@
   <Config />
   <SourceFiles>
     <File>c:/Users/Calum/Desktop/Projects/Challenge/Pong/Content/Audio/bump.wav</File>
+    <File>c:/Users/Calum/Desktop/Projects/Challenge/Pong/Content/Fonts/ScoreFont.spritefont</File>
     <File>c:/Users/Calum/Desktop/Projects/Challenge/Pong/Content/Sprites/Ball.png</File>
     <File>c:/Users/Calum/Desktop/Projects/Challenge/Pong/Content/Sprites/Paddle.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
