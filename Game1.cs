@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -22,7 +23,13 @@ public class Game1 : Game
 
     protected override void Initialize()
     {
-        // TODO: Add your initialization logic here
+        player1 = new Paddle(64, 240, Paddle.Type.Player1);
+        player2 = new Paddle(800 - 64, 240, Paddle.Type.AI);
+        ball = new Ball();
+
+        ball.Initialize();
+        player1.Initialize();
+        player2.Initialize();
 
         base.Initialize();
     }
@@ -31,7 +38,10 @@ public class Game1 : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-        // TODO: use this.Content to load your game content here
+
+        player1.Load(Content, "Sprites/Paddle");
+        player2.Load(Content, "Sprites/Paddle");
+        ball.Load(Content, "Sprites/Ball");
     }
 
     protected override void Update(GameTime gameTime)
@@ -39,8 +49,8 @@ public class Game1 : Game
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
-        player1.Update(gameTime);
-        player2.Update(gameTime);
+        player1.Update(gameTime, ball);
+        player2.Update(gameTime, ball);
         ball.Update(gameTime, player1, player2);
 
         base.Update(gameTime);
@@ -48,7 +58,7 @@ public class Game1 : Game
 
     protected override void Draw(GameTime gameTime)
     {
-        GraphicsDevice.Clear(Color.CornflowerBlue);
+        GraphicsDevice.Clear(Color.Black);
 
         _spriteBatch.Begin();
 
