@@ -82,6 +82,7 @@ public class SceneManager
         {
             _currentScene.Unload();
             _currentScene = _scenes[name];
+            _currentScene.Initialize();
             _currentScene.Load(_content);
         }
         else

@@ -11,6 +11,7 @@ public class MenuScene : Scene
     public MenuScene() : base(0, "MenuScene")
     {
         _titleText = new UI_Text("PONG", "ScoreFont", 400, 80, Color.White);
+        _controller = new PlayerController();
     }
 
     public override void Initialize()

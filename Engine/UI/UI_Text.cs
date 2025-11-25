@@ -50,7 +50,7 @@ public class UI_Text
 
     public void Draw(SpriteBatch sb)
     {
-        sb.DrawString(_font, _text, _position - _origin, _color);
+        sb.DrawString(_font, _text, _position, _color, 0, _origin, 1, SpriteEffects.None, 1);
     }
 
 }

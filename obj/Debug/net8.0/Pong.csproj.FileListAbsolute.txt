@@ -67,3 +67,4 @@ c:\Users\Calum\Desktop\Projects\Challenge\Pong\obj\Debug\net8.0\Pong.pdb
 C:\Users\Calum\Desktop\Projects\Challenge\Pong\obj\Debug\net8.0\Pong.genruntimeconfig.cache
 C:\Users\Calum\Desktop\Projects\Challenge\Pong\obj\Debug\net8.0\ref\Pong.dll
 c:\Users\Calum\Desktop\Projects\Challenge\Pong\bin\Debug\net8.0\Content\Audio\bump.xnb
+c:\Users\Calum\Desktop\Projects\Challenge\Pong\bin\Debug\net8.0\Content\Fonts\ScoreFont.xnb

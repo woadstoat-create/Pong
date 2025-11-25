@@ -8,7 +8,7 @@ public class Ball
     private Texture2D _texture;
     private Vector2 _position;
     private Collider _collider;
-    private Vector2 _speed = new Vector2(100, 50);
+    private Vector2 _speed = new Vector2(200, 50);
     private float _speedMultiplier = 1.0f; 
     private Vector2 _origin;
 

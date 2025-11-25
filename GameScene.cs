@@ -17,7 +17,7 @@ public class GameScene : Scene
         _player1 = new Paddle(64, 240, Paddle.Type.Player1);
         _player2 = new Paddle(800 - 64, 240, Paddle.Type.AI);
         _ball = new Ball();
-        _scoreText = new UI_Text(_p1Score.ToString() + " : " + _p2Score.ToString(), "ScoreFont", 400, 30, Color.White);
+        _scoreText = new UI_Text(_p1Score.ToString() + " : " + _p2Score.ToString(), "ScoreFont", 400, 60, Color.White);
     }
 
     public override void Initialize()

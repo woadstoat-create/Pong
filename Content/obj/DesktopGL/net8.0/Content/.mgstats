@@ -1,4 +1,5 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"/workspaces/Pong/Content/Audio/bump.wav","/workspaces/Pong/Content/bin/DesktopGL/Content/Audio/bump.xnb","SoundEffectProcessor","SoundEffectContent",12514,12413,0.12048
-"/workspaces/Pong/Content/Sprites/Ball.png","/workspaces/Pong/Content/bin/DesktopGL/Content/Sprites/Ball.xnb","TextureProcessor","Texture2DContent",138,4181,0.0298359
-"/workspaces/Pong/Content/Sprites/Paddle.png","/workspaces/Pong/Content/bin/DesktopGL/Content/Sprites/Paddle.xnb","TextureProcessor","Texture2DContent",147,16469,0.0041471
+"C:/Users/Calum/Desktop/Projects/Challenge/Pong/Content/Audio/bump.wav","C:/Users/Calum/Desktop/Projects/Challenge/Pong/Content/bin/DesktopGL/Content/Audio/bump.xnb","SoundEffectProcessor","SoundEffectContent",12514,12413,1.383514
+"C:/Users/Calum/Desktop/Projects/Challenge/Pong/Content/Fonts/ScoreFont.spritefont","C:/Users/Calum/Desktop/Projects/Challenge/Pong/Content/bin/DesktopGL/Content/Fonts/ScoreFont.xnb","FontDescriptionProcessor","SpriteFontContent",2068,267289,0.1615325
+"C:/Users/Calum/Desktop/Projects/Challenge/Pong/Content/Sprites/Ball.png","C:/Users/Calum/Desktop/Projects/Challenge/Pong/Content/bin/DesktopGL/Content/Sprites/Ball.xnb","TextureProcessor","Texture2DContent",138,4181,0.029017
+"C:/Users/Calum/Desktop/Projects/Challenge/Pong/Content/Sprites/Paddle.png","C:/Users/Calum/Desktop/Projects/Challenge/Pong/Content/bin/DesktopGL/Content/Sprites/Paddle.xnb","TextureProcessor","Texture2DContent",147,16469,0.0045433

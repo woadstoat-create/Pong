@@ -4,11 +4,13 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>/workspaces/Pong/Content/Audio/bump.wav</File>
-    <File>/workspaces/Pong/Content/Sprites/Ball.png</File>
-    <File>/workspaces/Pong/Content/Sprites/Paddle.png</File>
+    <File>C:/Users/Calum/Desktop/Projects/Challenge/Pong/Content/Audio/bump.wav</File>
+    <File>C:/Users/Calum/Desktop/Projects/Challenge/Pong/Content/Fonts/ScoreFont.spritefont</File>
+    <File>C:/Users/Calum/Desktop/Projects/Challenge/Pong/Content/Sprites/Ball.png</File>
+    <File>C:/Users/Calum/Desktop/Projects/Challenge/Pong/Content/Sprites/Paddle.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
