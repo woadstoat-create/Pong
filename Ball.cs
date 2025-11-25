@@ -68,5 +68,11 @@ public class Ball
         1);
     }
 
+    public void ResetBall()
+    {
+        _position = new Vector2(400, 240);
+        _speed = new Vector2(100, 50);
+        _speedMultiplier = 1.0f;
+    }
 
 }

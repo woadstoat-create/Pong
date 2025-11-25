@@ -10,26 +10,23 @@ public class Game1 : Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
 
-    Paddle player1;
-    Paddle player2;
-    Ball ball;
+
 
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
+
+        
+        SceneManager.Instance.AddScene("MenuScene", new MenuScene());
+        SceneManager.Instance.AddScene("GameScene", new GameScene());
+        SceneManager.Instance.SetCurrentScene("MenuScene");
     }
 
     protected override void Initialize()
     {
-        player1 = new Paddle(64, 240, Paddle.Type.Player1);
-        player2 = new Paddle(800 - 64, 240, Paddle.Type.AI);
-        ball = new Ball();
-
-        ball.Initialize();
-        player1.Initialize();
-        player2.Initialize();
+        SceneManager.Instance.Initialize();
 
         base.Initialize();
     }
@@ -38,10 +35,8 @@ public class Game1 : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-
-        player1.Load(Content, "Sprites/Paddle");
-        player2.Load(Content, "Sprites/Paddle");
-        ball.Load(Content, "Sprites/Ball");
+        SceneManager.Instance.Load(Content);
+        
     }
 
     protected override void Update(GameTime gameTime)
@@ -49,9 +44,9 @@ public class Game1 : Game
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
-        player1.Update(gameTime, ball);
-        player2.Update(gameTime, ball);
-        ball.Update(gameTime, player1, player2);
+
+        SceneManager.Instance.Update(gameTime);
+        
 
         base.Update(gameTime);
     }
@@ -62,9 +57,7 @@ public class Game1 : Game
 
         _spriteBatch.Begin();
 
-        player1.Draw(_spriteBatch);
-        player2.Draw(_spriteBatch);
-        ball.Draw(_spriteBatch);
+        SceneManager.Instance.Draw(_spriteBatch);      
 
         _spriteBatch.End();
 
