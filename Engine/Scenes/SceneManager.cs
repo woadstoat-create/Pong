@@ -3,91 +3,49 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
+public enum SceneId
+{
+    Splash,
+    MainMenu,
+    Play,
+    Pause,    
+}
+
 public class SceneManager
 {
-    private static SceneManager _instance;
-    public static SceneManager Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = new SceneManager();
-            }
-            return _instance;
-        }
-    }
-    
-    private Dictionary<string, Scene> _scenes;
+    private readonly Dictionary<SceneId, Scene> _scenes = new();
     private Scene _currentScene;
+    private SceneId? _currentId;
 
-    private ContentManager _content;
-
-    public SceneManager()
+    public void AddScene(SceneId id, Scene scene)
     {
-        _scenes = new Dictionary<string, Scene>();    
+        _scenes[id] = scene;
     }
 
-    public void Initialize()
+    public void ChangeScene(SceneId id)
     {
         if (_currentScene != null)
         {
-            _currentScene.Initialize();   
+            _currentScene?.UnloadContent();
         }
-    }
 
-    public void Load(ContentManager content)
-    {
-        _content = content;
-        if (_currentScene != null)
+        if (_scenes.TryGetValue(id, out var newScene))
         {
-            _currentScene.Load(_content);   
-        }
-    }
+            _currentScene = newScene;
+            _currentId = id;
 
-    public void Unload()
-    {
-        
-    }
-
-    public void Update(GameTime dt)
-    {
-        if (_currentScene != null && _currentScene.IsLoaded)
-        {
-            _currentScene.Update(dt);
-        }
-    }
-
-    public void Draw(SpriteBatch sb)
-    {
-        if (_currentScene != null && _currentScene.IsLoaded)
-        {
-            _currentScene.Draw(sb);
-        }
-    }
-
-    public void AddScene(string name, Scene scene)
-    {
-        _scenes.Add(name, scene);
-    }
-
-    public void RemoveScene(string name)
-    {
-        _scenes.Remove(name);
-    }
-
-    public void SetCurrentScene(string name)
-    {
-        if (_currentScene != null)
-        {
-            _currentScene.Unload();
-            _currentScene = _scenes[name];
             _currentScene.Initialize();
-            _currentScene.Load(_content);
+            _currentScene.LoadContent();
         }
-        else
-        {
-            _currentScene = _scenes[name];
-        }
+    }
+
+    public void Update(GameTime gt)
+    {
+        _currentScene?.Update(gt);
+    }
+
+    public void Draw(GameTime gt, SpriteBatch sb)
+    {
+        _currentScene?.Draw(gt, sb);
     }
 }

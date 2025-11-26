@@ -1,4 +1,4 @@
-using System.Numerics;
+using Microsoft.Xna.Framework;
 
 public sealed class VelocityComponent : IComponent
 {

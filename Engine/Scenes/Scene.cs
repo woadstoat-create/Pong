@@ -1,41 +1,24 @@
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 public abstract class Scene
 {
-    protected int _id;
-    protected string _name;
-    public bool IsLoaded = false;
+    protected readonly Game Game;
+    protected GraphicsDevice GraphicsDevice => Game.GraphicsDevice;
+    protected ContentManager Content => Game.Content;
 
-    public Scene(int id, string name)
+
+    protected Scene(Game game)
     {
-        _id = id;
-        _name = name;
+        Game = game;
     }
 
-    public virtual void Initialize()
-    {
-        
-    }
+    public virtual void Initialize() { }
+    public virtual void LoadContent() { }
+    public virtual void UnloadContent() { }
 
-    public virtual void Load(ContentManager content)
-    {
-        IsLoaded = true;
-    }
-
-    public virtual void Unload()
-    {
-        
-    }
-
-    public virtual void Update(GameTime dt)
-    {
-        
-    }
-
-    public virtual void Draw(SpriteBatch sb)
-    {
-        
-    }
+    public virtual void Update(GameTime gt) { }
+    public virtual void Draw(GameTime gt, SpriteBatch sb) { }
 }

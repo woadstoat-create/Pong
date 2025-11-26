@@ -10,6 +10,7 @@ public class Game1 : Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
 
+    private SceneManager _sceneManager;
 
 
     public Game1()
@@ -19,15 +20,17 @@ public class Game1 : Game
         IsMouseVisible = true;
 
         
-        SceneManager.Instance.AddScene("MenuScene", new MenuScene());
-        SceneManager.Instance.AddScene("GameScene", new GameScene());
-        SceneManager.Instance.SetCurrentScene("MenuScene");
-    }
+   }
 
     protected override void Initialize()
     {
-        SceneManager.Instance.Initialize();
+        _sceneManager = new SceneManager();
 
+        //_sceneManager.AddScene(SceneId.MainMenu, new MenuScene(this));
+        _sceneManager.AddScene(SceneId.Play, new GameScene(this));
+
+        _sceneManager.ChangeScene(SceneId.Play);
+        
         base.Initialize();
     }
 
@@ -35,7 +38,7 @@ public class Game1 : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-        SceneManager.Instance.Load(Content);
+        
         
     }
 
@@ -45,7 +48,7 @@ public class Game1 : Game
             Exit();
 
 
-        SceneManager.Instance.Update(gameTime);
+        _sceneManager.Update(gameTime);
         
 
         base.Update(gameTime);
@@ -57,7 +60,7 @@ public class Game1 : Game
 
         _spriteBatch.Begin();
 
-        SceneManager.Instance.Draw(_spriteBatch);      
+        _sceneManager.Draw(gameTime, _spriteBatch);     
 
         _spriteBatch.End();
 
