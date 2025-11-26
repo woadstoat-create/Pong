@@ -1,47 +1,38 @@
+using System;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
 
-public class Entity
+public sealed class Entity
 {
-    private List<Component> _components;
+    private static int _nextId = 1;
+    public int Id { get; }
+
+    private readonly Dictionary<Type, IComponent> _components = new();
 
     public Entity()
     {
-        
+        Id = _nextId++;
     }
 
-    public void Initialize()
+    public T AddComponent<T>(T component) where T : class, IComponent
     {
-        
+        _components[typeof(T)] = component;
+        return component;
     }
 
-    public void Load(ContentManager content)
+    public bool TryGetComponent<T>(out T component) where T : class, IComponent
     {
-        
-    }
-
-    public void Update(GameTime dt)
-    {
-        
-    }
-
-    public void Draw(SpriteBatch sb)
-    {
-        
-    }
-
-    public T GetComponent<T>() where T : Component
-    {
-        foreach (Component component in _components)
+        if (_components.TryGetValue(typeof(T), out var c))
         {
-            if (component.GetType().Equals(typeof(T)))
-            {
-                return (T)component;
-            }
+            component = (T)c;
+            return true;
         }
 
-        return null;
+        component = null;
+        return false;
+    }
+
+    public bool HasComponent<T>() where T : class, IComponent
+    {
+        return _components.ContainsKey(typeof(T));
     }
 }
