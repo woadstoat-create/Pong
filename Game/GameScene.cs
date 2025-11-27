@@ -1,5 +1,6 @@
 using System.Threading;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -69,6 +70,16 @@ public class GameScene : EcsScene
         ball.AddComponent(new TransformComponent { Position = new Vector2(800 / 2, 480 / 2)}); 
         ball.AddComponent(new ColliderComponent {Collider = new Rectangle(0, 0, 32, 32), IsTrigger = false});
         ball.AddComponent(new TagComponent { Tag = Tags.Ball });
+        var paddleSfx = Content.Load<SoundEffect>("Audio/PaddleHit");
+        var wallSfx = Content.Load<SoundEffect>("Audio/WallHit");
+        var scoreSfx = Content.Load<SoundEffect>("Audio/ScoreFX");
+        ball.AddComponent(new BallAudioComponent
+        {
+            PaddleHitSound = paddleSfx,
+            WallHitSound = wallSfx,
+            ScoreSound = scoreSfx
+        });
+
         entities.Add(ball);
 
         var gameState = new Entity();

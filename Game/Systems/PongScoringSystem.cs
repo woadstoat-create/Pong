@@ -50,11 +50,13 @@ public sealed class PongScoringSystem : IUpdateSystem
         if (ballCollider.Collider.Right < 0)
         {
             score.RightScore++;
+            PlayScoreSound(ballEntity);
             ResetBall(ballTransform, ballVelocity, toLeft: false);
         }
         else if (ballCollider.Collider.Left > _screenWidth)
         {
             score.LeftScore++;
+            PlayScoreSound(ballEntity);
             ResetBall(ballTransform, ballVelocity, toLeft: true);
         }
     }
@@ -76,5 +78,14 @@ public sealed class PongScoringSystem : IUpdateSystem
         dir.Normalize();
 
         velocity.Velocity = dir * speed;
+    }
+
+    private void PlayScoreSound(Entity ballEntity)
+    {
+        if (ballEntity.TryGetComponent<BallAudioComponent>(out var audio) &&
+            audio.ScoreSound != null)
+        {
+            audio.ScoreSound.Play();
+        }
     }
 }
