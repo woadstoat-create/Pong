@@ -11,7 +11,8 @@ public sealed class PlayerInputSystem : IUpdateSystem
         foreach (var e in entities)
         {
             if (!e.TryGetComponent<InputComponent>(out var input) ||
-                !e.TryGetComponent<VelocityComponent>(out var velocity))
+                !e.TryGetComponent<VelocityComponent>(out var velocity) ||
+                !e.TryGetComponent<TransformComponent>(out var transform))
                 continue;
 
             Vector2 dir = Vector2.Zero;

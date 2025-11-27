@@ -21,6 +21,7 @@ public class GameScene : EcsScene
         updateSystems.Add(new PongScoringSystem(
             GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height
         ));
+        updateSystems.Add(new PaddleBoundsSystem(GraphicsDevice.Viewport.Height));
         updateSystems.Add(new ScoreUiSystem());
         drawSystems.Add(new RenderSystem());
         drawSystems.Add(new TextRenderSystem());
