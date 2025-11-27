@@ -37,7 +37,7 @@ public sealed class PongCollisionSystem : IUpdateSystem
             if (ballCollider.Collider.Intersects(otherCollider.Collider))
             {
                 ballVelocity.Velocity = new Vector2(-ballVelocity.Velocity.X, ballVelocity.Velocity.Y);
-
+                ballVelocity.Multiplier += 0.2f;
                 if (ballEntity.TryGetComponent<BallAudioComponent>(out var audio) &&
                     audio.PaddleHitSound != null)
                 {
@@ -51,7 +51,7 @@ public sealed class PongCollisionSystem : IUpdateSystem
         if (ballCollider.Collider.Y < 16 || ballCollider.Collider.Y > 480 - 16)
         {
             ballVelocity.Velocity = new Vector2(ballVelocity.Velocity.X, -ballVelocity.Velocity.Y);
-
+            ballVelocity.Multiplier += 0.2f;
             if (ballEntity.TryGetComponent<BallAudioComponent>(out var audio) &&
                 audio.WallHitSound != null)
             {
