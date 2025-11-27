@@ -78,6 +78,7 @@ public sealed class PongScoringSystem : IUpdateSystem
         dir.Normalize();
 
         velocity.Velocity = dir * speed;
+        velocity.Multiplier = 1.0f;
     }
 
     private void PlayScoreSound(Entity ballEntity)
