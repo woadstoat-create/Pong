@@ -2,6 +2,7 @@ using System.Threading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 public class GameScene : EcsScene
 {
@@ -17,6 +18,8 @@ public class GameScene : EcsScene
 
     protected override void ConfigureSystems()
     {
+        updateSystems.Add(new PlayerInputSystem());
+        updateSystems.Add(new PongAISystem());
         updateSystems.Add(new MovementSystem());
         updateSystems.Add(new ColliderSyncSystem());
         updateSystems.Add(new PongCollisionSystem());
@@ -43,6 +46,7 @@ public class GameScene : EcsScene
         player1.AddComponent(new TransformComponent { Position = new Vector2(64, 240)}); 
         player1.AddComponent(new ColliderComponent {Collider = new Rectangle(0, 0, 32, 128), IsTrigger = false});
         player1.AddComponent(new TagComponent { Tag = Tags.Player });
+        player1.AddComponent(new InputComponent { UpKey = Keys.W, DownKey = Keys.S, MoveSpeed = 300, VerticalOnly = true });
         entities.Add(player1);
 
         var player2 = new Entity();
@@ -55,6 +59,7 @@ public class GameScene : EcsScene
         player2.AddComponent(new TransformComponent { Position = new Vector2(800 - 64, 240)}); 
         player2.AddComponent(new ColliderComponent {Collider = new Rectangle(0, 0, 32, 128), IsTrigger = false});
         player2.AddComponent(new TagComponent { Tag = Tags.Player2 });
+        player2.AddComponent(new AIPaddleComponent { });
         entities.Add(player2);
 
         var ball = new Entity();
@@ -64,7 +69,7 @@ public class GameScene : EcsScene
             Color = Color.White,
             Origin = new Vector2(ballTex.Width / 2, ballTex.Height / 2),
         });
-        ball.AddComponent(new VelocityComponent {Velocity = new Vector2(0,0)});
+        ball.AddComponent(new VelocityComponent {Velocity = new Vector2(20,20)});
         ball.AddComponent(new TransformComponent { Position = new Vector2(800 / 2, 480 / 2)}); 
         ball.AddComponent(new ColliderComponent {Collider = new Rectangle(0, 0, 32, 32), IsTrigger = false});
         ball.AddComponent(new TagComponent { Tag = Tags.Ball });
