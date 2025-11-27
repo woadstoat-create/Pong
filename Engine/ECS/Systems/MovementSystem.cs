@@ -12,7 +12,7 @@ public sealed class MovementSystem : IUpdateSystem
             if (e.TryGetComponent<TransformComponent>(out var transform) &&
                 e.TryGetComponent<VelocityComponent>(out var velocity))
             {
-                transform.Position += velocity.Velocity * dt;
+                transform.Position += (velocity.Velocity * velocity.Multiplier) * dt;
             }
         }
     }

@@ -16,7 +16,8 @@ public sealed class PaddleBoundsSystem : IUpdateSystem
             {
                 // Only care about paddles
                 if (!e.TryGetComponent<TagComponent>(out var tags) ||
-                    !tags.Tag.HasFlag(Tags.Player | Tags.Player2))
+                    !tags.Tag.HasFlag(Tags.Player) || 
+                    !tags.Tag.HasFlag(Tags.Player2))
                     continue;
 
                 if (!e.TryGetComponent<TransformComponent>(out var transform))

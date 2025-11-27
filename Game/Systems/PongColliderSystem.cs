@@ -48,7 +48,7 @@ public sealed class PongCollisionSystem : IUpdateSystem
             }
         }
 
-        if (ballCollider.Collider.Y < 16 || ballCollider.Collider.Y > 480 - 16)
+        if (ballCollider.Collider.Y < 0 || ballCollider.Collider.Y > 480 - 32)
         {
             ballVelocity.Velocity = new Vector2(ballVelocity.Velocity.X, -ballVelocity.Velocity.Y);
             ballVelocity.Multiplier += 0.2f;
