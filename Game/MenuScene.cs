@@ -3,49 +3,61 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-public class MenuScene : Scene
+public sealed class MenuScene : Scene
 {
-    private UI_Text _titleText;
-    private PlayerController _controller;
+    private readonly SceneManager _sceneManager;
+    private SpriteFont _font;
 
-    public MenuScene() : base(0, "MenuScene")
+    private KeyboardState _previousKeyboardState;
+
+    private const string TitleText = "PONG";
+    private const string PromptText = "Press Enter to Start";
+
+    public MenuScene(Game game, SceneManager sceneManager) : base(game)
     {
-        _titleText = new UI_Text("PONG", "ScoreFont", 400, 80, Color.White);
-        _controller = new PlayerController();
+        _sceneManager = sceneManager;
     }
 
-    public override void Initialize()
+    public override void LoadContent()
     {
-        base.Initialize();
+        _font = Content.Load<SpriteFont>("Fonts/MainFont");
     }
 
-    public override void Load(ContentManager content)
+    public override void Update(GameTime gt)
     {
-        _titleText.Load(content);
-        base.Load(content);
-    }
+        var kb = Keyboard.GetState();
 
-    public override void Unload()
-    {
-        base.Unload();
-    }
-
-    public override void Update(GameTime dt)
-    {
-        _controller.Update();
-
-        if (_controller.IsKeyPressed(Keys.Enter))
+        if (kb.IsKeyDown(Keys.Enter) && !_previousKeyboardState.IsKeyDown(Keys.Enter))
         {
-            SceneManager.Instance.SetCurrentScene("GameScene");
+            _sceneManager.ChangeScene(SceneId.Play);
         }
 
-        _controller.LateUpdate();
-        base.Update(dt);
+        _previousKeyboardState = kb;
     }
 
-    public override void Draw(SpriteBatch sb)
+    public override void Draw(GameTime gt, SpriteBatch sb)
     {
-        _titleText.Draw(sb);
-        base.Draw(sb);
+        var vp = GraphicsDevice.Viewport;
+
+        float centerX = vp.Width / 2f;
+        float centerY = vp.Height / 2f;
+
+        var titleSize = _font.MeasureString(TitleText);
+        var promptSize = _font.MeasureString(PromptText);
+
+        var titlePos = new Vector2(
+            centerX - titleSize.X / 2f,
+            centerY * 0.5f
+        );
+
+        var promptPos = new Vector2(
+            centerX - promptSize.X / 2f,
+            centerY * 1.1f
+        );
+
+        sb.DrawString(_font, TitleText,  titlePos,  Color.White);
+        sb.DrawString(_font, PromptText, promptPos, Color.White);
+
+        base.Draw(gt, sb);
     }
 }

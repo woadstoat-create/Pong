@@ -6,14 +6,9 @@ using Microsoft.Xna.Framework.Input;
 
 public class GameScene : EcsScene
 {
-    private int _p1Score = 0;
-    private int _p2Score = 0;
-    private UI_Text _scoreText; 
-
-
     public GameScene(Game game) : base(game)
     {
-        _scoreText = new UI_Text(_p1Score.ToString() + " : " + _p2Score.ToString(), "ScoreFont", 400, 60, Color.White);
+        
     }
 
     protected override void ConfigureSystems()

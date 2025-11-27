@@ -26,10 +26,10 @@ public class Game1 : Game
     {
         _sceneManager = new SceneManager();
 
-        //_sceneManager.AddScene(SceneId.MainMenu, new MenuScene(this));
+        _sceneManager.AddScene(SceneId.MainMenu, new MenuScene(this, _sceneManager));
         _sceneManager.AddScene(SceneId.Play, new GameScene(this));
 
-        _sceneManager.ChangeScene(SceneId.Play);
+        _sceneManager.ChangeScene(SceneId.MainMenu);
         
         base.Initialize();
     }
